@@ -2,7 +2,7 @@ class dump{
 
     private int game_id {set; get;} 
     private int count;
-    private int field [4,4];
+    private int[,] field;
 
     void setCount (int c) {
         if (c<0) c = 0;
@@ -17,7 +17,7 @@ class dump{
         field[x, y] = val;
     }
 
-    public int getCount(){return count}
+    public int getCount(){ return count; }
 
     public int getField(int x, int y){
         if (x<0) x = 0;

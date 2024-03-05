@@ -1,9 +1,17 @@
-using System.Text.Json  // джейсон файл
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Collections.Specialized;
+using System.Text;
+using System.Text.Json;  // джейсон файл
 class dumper{
 
   private String filename;  
-  private String filetype[] = {".bin", ".json", ".txt"};
+  private String[] filetype = {".bin", ".json", ".txt"};
   private String filepath;
+
+    private dump dmp;
 
   private bool saveMode = true; //true - text, false - binary
   private int curSaveType; //Index of filetype 
@@ -28,11 +36,13 @@ class dumper{
   }
 
   void save() { // Сохраняет JSON
-    String JsonString = JsonSerializer.Serialize(dump);
+    String JsonString = JsonSerializer.Serialize(dmp);
         
   }
 
   dump read(){ // Читает JSON
+
+        return null;
 
   }
 
