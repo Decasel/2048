@@ -14,7 +14,7 @@ class dump{
         if (x>3) x = 3;
         if (y<0) y = 0;
         if (y>3) y = 3;
-        field[x,y]=val
+        field[x, y] = val;
     }
 
     public int getCount(){return count}

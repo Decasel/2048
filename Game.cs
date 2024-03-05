@@ -16,5 +16,10 @@ namespace _2048
         {
             InitializeComponent();
         }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

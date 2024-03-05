@@ -28,33 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Reset = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Reset
+            // label1
             // 
-            this.Reset.Location = new System.Drawing.Point(227, 381);
-            this.Reset.Name = "Reset";
-            this.Reset.Size = new System.Drawing.Size(273, 44);
-            this.Reset.TabIndex = 0;
-            this.Reset.Text = "button1";
-            this.Reset.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(426, 196);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "2048";
             // 
-            // Form1
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Reset);
-            this.Name = "Form1";
+            this.Controls.Add(this.label1);
+            this.Name = "Game";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button Reset;
+        private System.Windows.Forms.Label label1;
     }
 }
 
