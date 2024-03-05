@@ -4,6 +4,11 @@ class dump{
     private int count;
     private int[,] field;
 
+    dump()
+    {
+        field = new int[4, 4];
+    }
+
     void setCount (int c) {
         if (c<0) c = 0;
         count = c;
