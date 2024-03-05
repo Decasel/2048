@@ -29,8 +29,4 @@ class dump{
 
 }
 
-template <typename LT> list<LT> = new List();
-
-list<gth>
-}
 
