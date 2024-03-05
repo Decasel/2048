@@ -14,6 +14,9 @@ namespace _2048
         [STAThread]
         static void Main()
         {
+            dump dmp;
+            dumper dumper = new dumper(dmp, "a", "a", 1);
+            dmp.setField(dmp, "a");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Game());
