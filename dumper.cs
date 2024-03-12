@@ -48,4 +48,52 @@ class dumper{
 
   }
 
+    // ...........................................................
+    //public async void writeProgress()
+    //{
+    //    contanerJson =
+    //      JsonSerializer.Serialize(progr);
+    //    if (File.Exists(filename))
+    //    {
+    //        System.IO.StreamWriter file = new
+    //        System.IO.StreamWriter(fileName, false);
+    //        await
+    //      file.WriteAsync(contanerJson);
+    //        File.Close();
+    //    }
+    //    else
+    //    {
+    //        File.Create(fileName).Close();
+    //        System.IO.StreamWriter file = new
+    //          System.IO.StreamWriter(fileName, false);
+    //        await
+    //        file.WriteAsync(contanerJson);
+    //        file.Close();
+    //    }
+    //}
+    //
+    //public void Progress()
+    //{
+    //    if (File.Exists(fileName))
+    //    {
+    //        StreamReader sr =
+    //          File.OpenText(fileName);
+    //        String json = "";
+    //        String s = "";
+    //        while ((s = sr.ReadLine()) !=
+    //        null)
+    //        {
+    //            json += s;
+    //        }
+    //        sr.Close();
+    //        progr =
+    //    JsonSerializer.Drserialize<Params>(Json);
+    //    }
+    //    else
+    //    {
+    //        File.Create(fileName).Close();
+    //        writeProgress();
+    //    }
+    //}
+    // ...........................................................
 }
