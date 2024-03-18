@@ -4,96 +4,93 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Collections.Specialized;
 using System.Text;
+using System.IO;
 using System.Text.Json;  // джейсон файл
-class dumper{
+class dumper
+{
 
-  private String filename;  
-  private String[] filetype = {".bin", ".json", ".txt"};
-  private String filepath;
+    private String filename;
+    private String[] filetype = { ".bin", ".json", ".txt" };
+    private String filepath;
+    private dump dmp;
 
-  private dump dmp;
+    private bool saveMode = true; //true - text, false - binary
+    private int curSaveType; //Index of filetype 
 
-  private bool saveMode = true; //true - text, false - binary
-  private int curSaveType; //Index of filetype 
+    public dumper(String f_name, String f_path, int f_type)
+    { //Конструктор для записи текстом
+        saveMode = true;
+        if (f_type > -1 && f_type < filetype.Length)
+        {
+            curSaveType = f_type;
+        }
+        else
+        {
+            curSaveType = 1;
+        }
 
-  public dumper(dump d, String f_name, String f_path, int f_type){ //Конструктор для записи текстом
-    saveMode = true;
-    if(f_type > -1 && f_type < filetype.Length){
-      curSaveType = f_type;
-    }else{
-      curSaveType = 1;
+        filename = f_name;
+        filepath = f_path;
+
+
     }
 
-    filename = f_name;
-    filepath = f_path;
-    dmp = d;
+    public dumper(String f_name, String f_path)
+    { //Конструктор для записи бинарным видом
+        saveMode = false;
+        filename = f_name;
+        filepath = f_path;
+    }
 
-  }
-
-  public dumper(dump d, String f_name, String f_path){ //Конструктор для записи бинарным видом
-    saveMode = false;
-    filename = f_name;
-    filepath = f_path;
+    public void setDump(dump d)
+    {
         dmp = d;
     }
 
-  void save() { // Сохраняет JSON
-    String JsonString = JsonSerializer.Serialize(dmp);
-        
-  }
+    public dump getDump() { return dmp; }
 
-  dump read(){ // Читает JSON
+    public async void writeProgress()
+    {
+        String fullFileName = filepath + filename + filetype[curSaveType];
+        String contanerJson = JsonSerializer.Serialize(dmp);
+        if (File.Exists(fullFileName))
+        {
+            System.IO.StreamWriter file = new System.IO.StreamWriter(fullFileName, false);
+            await
+          file.WriteAsync(contanerJson);
+            file.Close();
+        }
+        else
+        {
+            File.Create(fullFileName).Close();
+            System.IO.StreamWriter file = new System.IO.StreamWriter(fullFileName, false);
+            await
+            file.WriteAsync(contanerJson);
+            file.Close();
+        }
+    }
 
-        return null;
+    public async void readProgress()
+    {
+        String fullFileName = filepath + filename + filetype[curSaveType];
+        if (File.Exists(fullFileName))
+        {
+            StreamReader sr = File.OpenText(fullFileName);
+            String json = "";
+            String s = "";
 
-  }
+            while ((s = sr.ReadLine()) != null)
+            {
+                json += s;
+            }
+            sr.Close();
+            dmp = JsonSerializer.Deserialize<dump>(json);
+        }
+        else
+        {
+            File.Create(fullFileName).Close();
+            writeProgress();
+        }
+    }
 
-    // ...........................................................
-    //public async void writeProgress()
-    //{
-    //    contanerJson =
-    //      JsonSerializer.Serialize(progr);
-    //    if (File.Exists(filename))
-    //    {
-    //        System.IO.StreamWriter file = new
-    //        System.IO.StreamWriter(fileName, false);
-    //        await
-    //      file.WriteAsync(contanerJson);
-    //        File.Close();
-    //    }
-    //    else
-    //    {
-    //        File.Create(fileName).Close();
-    //        System.IO.StreamWriter file = new
-    //          System.IO.StreamWriter(fileName, false);
-    //        await
-    //        file.WriteAsync(contanerJson);
-    //        file.Close();
-    //    }
-    //}
-    //
-    //public void Progress()
-    //{
-    //    if (File.Exists(fileName))
-    //    {
-    //        StreamReader sr =
-    //          File.OpenText(fileName);
-    //        String json = "";
-    //        String s = "";
-    //        while ((s = sr.ReadLine()) !=
-    //        null)
-    //        {
-    //            json += s;
-    //        }
-    //        sr.Close();
-    //        progr =
-    //    JsonSerializer.Drserialize<Params>(Json);
-    //    }
-    //    else
-    //    {
-    //        File.Create(fileName).Close();
-    //        writeProgress();
-    //    }
-    //}
-    // ...........................................................
 }
